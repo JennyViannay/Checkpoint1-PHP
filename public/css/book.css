@@ -40,3 +40,32 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+ h3,
+ .list {
+     margin: 1%;
+     padding: 0;
+ }
+
+.theyOweMe_list {
+    list-style-type: none;
+    font-size: 0.4em;
+    font-family: Georgia;
+}
+
+.formThug {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+.inputThug,
+.buttThug {
+    width: 30%;
+    margin: 1%;
+    padding: 1%;
+}
+
+.theyOweMe {
+    font-size: 0.6em;
+    font-family: Georgia;
+
+}

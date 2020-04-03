@@ -1,3 +1,24 @@
+<?php
+require 'connec.php';
+$pdo = new PDO('mysql:host=localhost;dbname=checkpoint1', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+if($pdo === false){
+    echo "Connection error :" . $pdo->error_log();
+} else {
+$query = $pdo->query('SELECT * FROM friends');
+$friends = $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+if(isset($_GET['id']) && !empty($_GET['id'])){
+    $id = $_GET['id'];
+    $request = "SELECT * FROM bribe WHERE id=" . $id;
+    $sendRequest = $pdo->query($request);
+    if ($sendRequest === false) {
+        $pdo->errorInfo();
+    }
+    $bribe = $sendRequest->fetchObject();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/instructions.css">
-    <title>yoCheckpoint PHP 1</title>
+    <title>Checkpoint PHP 1</title>
 </head>
 <body>
 
