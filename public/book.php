@@ -122,10 +122,15 @@ if (isset($_POST)) {
                             <tr>
                                 <td class="theyOweMe"><?php echo $bribeInfo['name'] ?></td>
                                 <td class="theyOweMe"><?php echo $bribeInfo['payment'] ?></td>
-                                <td><?php echo $sumRequest;?></td>
                             </tr>
                         </tbody>
                         <?php }?>
+                        <tfoot>
+                            <tr>
+                                <td>Sum</td>
+                                <td><?php echo $sum['sum'];?></td>
+                            </tr>
+                        </tfoot>
                     </table>
 
             </div>
