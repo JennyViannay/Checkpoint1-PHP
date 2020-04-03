@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
 
 body {
@@ -39,4 +40,93 @@ main {
     background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
+}
+
+.desktop{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.empty-whisky{
+    display: none;
+}
+
+.whisky{
+    height: 20%;
+}
+
+.inkpen{
+    height: 50%;
+    align-self:flex-end;
+}
+
+.form div{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.buttom{
+    width: 20%;
+}
+
+table{
+    width: 100%;
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1200px) {
+    .inkpen{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+    .inkpen{
+        display: none;
+    }
+    .empty-whisky{
+        display: block;
+        height: 20%;
+    }
+    .whisky{
+        display: none;
+
+    }
+
+}
+
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    .inkpen{
+        display: none;
+    }
+    .whisky{
+        display: none;
+    }
+    .desktop{
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    .inkpen{
+        display: none;
+    }
+    .whisky{
+        display: none;
+    }
+
+    .desktop{
+        flex-direction: column;
+    }
+
+    .pages {
+        flex-direction: column-reverse;
+    }
+
+    .page{
+        width: 90%;
+    }
 }
