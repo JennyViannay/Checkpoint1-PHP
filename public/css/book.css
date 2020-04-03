@@ -1,42 +1,127 @@
-@import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
+ @import url('https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps&display=swap');
 
-body {
-    background-image: url('../image/background.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+    body {
+        background-image: url('../image/background.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-main {
-    padding-top: 4em;
-    font-size: 26pt;
-    font-family: 'Bilbo Swash Caps', cursive;
-}
+    main {
+        padding-top: 4em;
+        font-size: 26pt;
+        font-family: 'Bilbo Swash Caps', cursive;
+    }
 
-.whisky, .empty-whisky, .inkpen, .page {
-    filter: drop-shadow(15px 15px 5px var(--shadow));
-}
+    .whisky, .empty-whisky, .inkpen, .page {
+        filter: drop-shadow(15px 15px 5px var(--shadow));
+    }
 
-.pages {
-    display: flex;
-    width: auto;
-    flex-basis : 65%;
-    margin:1em;
-}
+    .pages {
+        display: flex;
+        width: auto;
+        flex-basis: 65%;
+        margin: 1em;
+    }
 
-.page {
-    height:65vh;
-    padding: 3vw;
-    width: 50%;
-    background-blend-mode: multiply;
-}
+    .page {
+        height: 65vh;
+        padding: 3vw;
+        width: 50%;
+        background-blend-mode: multiply;
+    }
 
-.leftpage {
-    background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
-    border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
-}
+    .leftpage {
+        background: url('../image/paper.png'), linear-gradient(270deg, rgba(157, 158, 137, 1) 0%, rgba(233, 226, 187, 1) 5%, rgba(255, 251, 203, 1) 18%);
+        border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
+    }
 
-.rightpage {
-    background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
-    border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
-    overflow: auto;
-}
+    .rightpage {
+        background: url('../image/paper.png'), linear-gradient(90deg, rgba(157, 158, 137, 1) 0%, rgba(233, 226, 187, 1) 5%, rgba(255, 251, 203, 1) 18%);
+        border-radius: 40% 24px 24px 40%/8px 8px 8px 8px;
+        overflow: auto;
+    }
+    .desktop, .whisky .pages .inkpen {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        justify-items: center;
+ }
+ /*   ////////////////////////////////////////////  +1200  //////////////////////////////////////////////////////////////////////      */
+
+ @media only screen and (min-width: 1200px) {
+        .empty-whisky {
+            display: none;
+        }
+
+        .whisky {
+            height: 100%;
+        }
+
+        .inkpen {
+            height: 100%;
+            margin-top: 7em;
+        }
+    }
+ /*   ////////////////////////////////////// 1100 - 1200 ////////////////////////////////////////////////////////////////////////////      */
+
+    @media only screen and (min-width: 1100px) and (max-width: 1200px) {
+
+        .inkpen {
+            display: none;
+        }
+        .empty-whisky {
+            display: none;
+        }
+        .whisky {
+            height: 100%;
+        }
+
+    }
+
+    /*   ////////////////////////////////////// 1000 - 1100 ////////////////////////////////////////////////////////////////////////////      */
+    @media only screen and (min-width: 1000px) and (max-width: 1100px) {
+        .inkpen {
+            display: none;
+        }
+        .empty-whisky {
+            height: 100%;
+        }
+        .whisky {
+            display: none;
+        }
+
+    }
+
+
+ /*   ////////////////////////////////////// 800 - 1000 ////////////////////////////////////////////////////////////////////////////      */
+ @media only screen and (min-width: 800px) and (max-width: 1000px) {
+
+     .inkpen {
+         display: none;
+     }
+
+     .empty-whisky {
+         display: none;
+     }
+
+     .whisky {
+         display: none;
+     }
+ }
+     /*   ////////////////////////////////////// -800 ////////////////////////////////////////////////////////////////////////////      */
+     @media only screen and (max-width: 800px) {
+         .inkpen {
+             display: none;
+         }
+
+         .empty-whisky {
+             display: none;
+         }
+
+         .whisky {
+             display: none;
+         }
+         .pages {
+             flex-direction: column;
+         }
+ }
