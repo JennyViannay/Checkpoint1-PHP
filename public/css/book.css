@@ -14,6 +14,17 @@ main {
 
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
+    
+}
+.empty-whisky{
+    display: none;
+}
+.desktop{
+    display: flex;
+}
+.whisky{
+    width: 23%;
+    height:50%;
 }
 
 .pages {
@@ -39,4 +50,66 @@ main {
     background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
+}
+@media screen and (max-width: 1200px) and (min-width: 1100px){
+    .inkpen{
+        display: none;
+    }
+}
+@media screen and (max-width: 1100px) and (min-width:1000px){
+    .whisky{
+        display: none;
+    }
+
+    .empty-whisky{
+        display: flex;
+        height: 50%;
+    }
+
+    .inkpen{
+        display: none;
+    }
+}
+@media screen and (max-width: 1000px) and (min-width:800px){
+    .empty-whisky{
+        display: none;
+    }
+
+    .whisky{
+        display: none;
+    }
+
+    .inkpen{
+        display: none;
+    }
+
+    .pages{
+        flex-basis: 100%;
+    }
+    
+}
+@media screen and (max-width: 800px){
+    .empty-whisky{
+        display: none;
+    }
+
+    .whisky{
+        display: none;
+    }
+
+    .inkpen{
+        display: none;
+    }
+
+    .pages{
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0.1em;
+    }
+    .page{
+        width: 100%;
+        margin-bottom: 1em;
+        height: 850px;
+    }
 }
