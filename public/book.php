@@ -25,8 +25,8 @@ $pdo = new PDO(DSN,USER,PASS);
             <div class="page leftpage">
             <?php
             if($_POST){
-                $name = trim($_POST['name']);
-                $payment = trim($_POST['payment']);
+                $name = $_POST['name'];
+                $payment = $_POST['payment'];
                 $query = "INSERT INTO bride (name, payment) VALUES (':nom', ':pay')";
                 $statement = $pdo->prepare($query);
                 $statement->bindValue(':nom', $name, PDO::PARAM_STR);
