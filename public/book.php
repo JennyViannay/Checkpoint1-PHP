@@ -62,7 +62,7 @@
                         $paymentErr = '* payment required';
                         $error += 1;
                     } else {
-                        $payment = test_input($_POST['firstname']);
+                        $payment = test_input($_POST['payment']);
                         if (!preg_match("#^(1|2|3|4|5|6|7|8|9|10)$#", $payment) || strlen($payment) > 45) {
                             $paymentErr = '* Only numbers';
                             $error += 1;
