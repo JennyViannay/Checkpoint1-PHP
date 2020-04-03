@@ -1,24 +1,3 @@
-<?php
-require 'connec.php';
-$pdo = new PDO('mysql:host=localhost;dbname=checkpoint1', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-if($pdo === false){
-    echo "Connection error :" . $pdo->error_log();
-} else {
-$query = $pdo->query('SELECT * FROM friends');
-$friends = $query->fetchAll(PDO::FETCH_ASSOC);
-}
-
-if(isset($_GET['id']) && !empty($_GET['id'])){
-    $id = $_GET['id'];
-    $request = "SELECT * FROM bribe WHERE id=" . $id;
-    $sendRequest = $pdo->query($request);
-    if ($sendRequest === false) {
-        $pdo->errorInfo();
-    }
-    $bribe = $sendRequest->fetchObject();
-}
-?>
-
 <!doctype html>
 <html lang="en">
 <head>

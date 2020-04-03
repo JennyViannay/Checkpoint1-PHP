@@ -26,6 +26,23 @@ if(isset($_GET['name']) && !empty($_GET['name'])) {
         }
         $bribe = $sendRequest->fetchObject();
     }
+    if (isset($_GET['payment']) && !empty($_GET['payment'])) {
+        $sum = "SELECT SUM(payment) from bribe";
+        $sendRequest = $pdo->query($request);
+        if ($sendRequest === false) {
+            $pdo->errorInfo();
+        }
+        $bribe = $sendRequest->fetchObject();
+    }
+    if (isset($_GET['sum']) && !empty($_GET['sum'])) {
+        $sumRequest = "SELECT * FROM bribe WHERE sum=" . $sum;
+        $sendRequest = $pdo->query($request);
+        if ($sendRequest === false) {
+            $pdo->errorInfo();
+        }
+        $bribe = $sendRequest->fetchObject();
+    }
+
 if (isset($_POST)) {
     if (!empty($_POST['name']) && !empty($_POST['payment'])) {
         try {
@@ -92,18 +109,25 @@ if (isset($_POST)) {
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
                 <h3>⚜️Thug life ⚜. Those bitches owe me 💸.️</h3>
-                <?php foreach ($bribe as $bribeInfo) { ?>
+
                     <table style="width:100%">
-                        <tr>
-                            <th class="theyOweMe">Their MOTHAF*** Name</th>
-                            <th class="theyOweMe">WHAT they OWE ME</th>
-                        </tr>
-                        <tr>
-                            <td class="theyOweMe"><?php echo $bribeInfo['name'] ?></td>
-                            <td class="theyOweMe"><?php echo $bribeInfo['payment'] ?></td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th class="theyOweMe">Their MOTHAF*** Name</th>
+                                <th class="theyOweMe">WHAT they OWE ME</th>
+                            </tr>
+                            </thead>
+                        <?php foreach ($bribe as $bribeInfo) { ?>
+                        <tbody>
+                            <tr>
+                                <td class="theyOweMe"><?php echo $bribeInfo['name'] ?></td>
+                                <td class="theyOweMe"><?php echo $bribeInfo['payment'] ?></td>
+                                <td><?php echo $sumRequest;?></td>
+                            </tr>
+                        </tbody>
+                        <?php }?>
                     </table>
-                <?php }?>
+
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
