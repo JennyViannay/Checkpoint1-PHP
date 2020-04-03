@@ -1,6 +1,44 @@
 <?php
 require_once 'connec.php';
 $pdo = new PDO(DSN,USER,PASS);
+if($pdo === false) {
+    echo "Connection error :" . $pdo->error_log();
+}
+$query = $pdo->prepare("SELECT * FROM bride");
+$querySelect = $query->execute();
+$bride = $query->fetchAll();
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    if(!empty($_POST['name']) && !empty($_POST['payment'])) {
+        try {
+            $statement = $pdo->prepare('INSERT INTO bride (name, payment) VALUES (:name, :payment)');
+
+            $statement->execute([
+                'name' => $_POST['name'],
+                'payment' => $_POST['payment']
+                ]);
+            return header('Location: http://localhost:8000/public/book.php');
+        } catch (PDOException $event){
+            $error = $event->getMessage();
+        }
+    }
+}
+/*if ((isset($_POST['send'])) && !empty($_POST['name']) && !empty($_POST['payment']) && $_POST['payment']>0){
+$name = $_POST['name'];
+$payment = $_POST['payment'];
+$query = $pdo->prepare("INSERT INTO bride (name, payment) values ('$name', '$payment')");
+$query->bindValue($name, $_POST['name'], PDO::PARAM_STR);
+$query->bindValue($payment, $_POST['payment'], PDO::PARAM_INT);
+$queryInsert = $query->execute();
+$queryInsert = $query->execute();
+if ($queryInsert = true && !empty($_POST['name']) && !empty($_POST['payment']) && $_POST['payment'] > 0){
+    $delai = 1;
+    $url = "http://localhost:8000/book.php";
+    header("Refresh: $delai;url=$url");
+}else{
+    $error['payment'] = "Don't try to fuck me boy/girl, give me some money ! ";
+    $error['name'] = "I don't take money from anonymous guys, sorry man/girl..";
+}
+}*/
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,17 +61,6 @@ $pdo = new PDO(DSN,USER,PASS);
 
         <div class="pages">
             <div class="page leftpage">
-            <?php
-            if($_POST){
-                $name = $_POST['name'];
-                $payment = $_POST['payment'];
-                $query = "INSERT INTO bride (name, payment) VALUES (':nom', ':pay')";
-                $statement = $pdo->prepare($query);
-                $statement->bindValue(':nom', $name, PDO::PARAM_STR);
-                $statement->bindValue(':pay', $payment, PDO::PARAM_INT);
-                $statement->execute();
-                }
-                ?>
                 <form  action=""  method="POST">
                     <div>
                         <label  for="nom">name :</label>
@@ -48,7 +75,6 @@ $pdo = new PDO(DSN,USER,PASS);
             </div>
             <div class="page rightpage">
             <?php
-
             $query = "SELECT * FROM bride ORDER BY name ASC";
             $statement = $pdo->prepare($query);
             $statement->execute();
@@ -64,9 +90,8 @@ $pdo = new PDO(DSN,USER,PASS);
             <table>
             <thead>
             <tr>
-                <td><?php echo $bride['id']; ?></td>
-                <td><?php echo $bride['name']; ?></td>
-                <td><?php echo $bride['payment']; ?></td>
+                <td><?= $bride['name']; ?></td>
+                <td><?= $bride['payment']; ?></td>
             </tr>
             </thead>
             <?php
@@ -74,7 +99,7 @@ $pdo = new PDO(DSN,USER,PASS);
             ?>
             <tbody>
                 <tr>
-                    <td> TOTAL : <?php echo $total?></td>
+                    <td> TOTAL : <?= $total?></td>
                 </tr>
                 </tbody>
             </table>
