@@ -84,6 +84,20 @@ if ($pdo === false){
 }
 
 ?>
+<!-- Calcul total
+                <div>
+                    <//?php 
+                    //$calcul = "SELECT SUM(payment) FROM bribe";
+                    //$appel = mysql_query($calcul);
+                    //$donnees = $appel->fetchAll(PDO::FETCH_ASSOC);
+                    //$total = mysql_fetch_row($donnes);
+                    //echo 'total: '. $total;
+                    
+                    
+                    ?>
+                </div>
+-->
+                
             </div>
         </div>
         <img src="image/inkpen.png" alt="an ink pen" class="inkpen"/>
