@@ -26,21 +26,6 @@ if(isset($_GET['name']) && !empty($_GET['name'])) {
         }
         $bribe = $sendRequest->fetchObject();
     }
-    if (isset($_GET['payment']) && !empty($_GET['payment'])) {
-        $sum = "SELECT SUM(payment) from bribe";
-        $sendRequest = $pdo->query($request);
-        if ($sendRequest === false) {
-            $pdo->errorInfo();
-        }
-        $bribe = $sendRequest->fetchObject();
-    }
-    if (isset($_GET['sum']) && !empty($_GET['sum'])) {
-        $sumRequest = "SELECT * FROM bribe WHERE sum=" . $sum;
-        $sendRequest = $pdo->query($request);
-        if ($sendRequest === false) {
-            $pdo->errorInfo();
-        }
-        $bribe = $sendRequest->fetchObject();
     }
 
 if (isset($_POST)) {
@@ -55,10 +40,17 @@ if (isset($_POST)) {
         } catch (PDOException $e) {
             echo $error = $e->getMessage();
         }
-        } else {
-        echo 'I WANT THEIR NAME 🔫';
+       // } else {
+        //echo 'I WANT THEIR NAME 🔫';
     }
+
 }
+$sum = 0;
+foreach($bribe as $value) {
+    for($value=1; $value<=5; $value++)
+    {
+    $sum +=$value;
+    }
 }
 ?>
 <!doctype html>
@@ -128,7 +120,7 @@ if (isset($_POST)) {
                         <tfoot>
                             <tr>
                                 <td>Sum</td>
-                                <td><?php echo $sum['sum'];?></td>
+                                <td><?php echo $sum; ?></td>
                             </tr>
                         </tfoot>
                     </table>

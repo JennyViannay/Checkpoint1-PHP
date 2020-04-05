@@ -40,6 +40,113 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+
+
+@media screen and (min-width: 1200px) {
+    .desktop {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .empty-whisky {
+        display: none;
+    }
+    .pages {
+        flex-grow: 2;
+        margin: 0em;
+    }
+    .inkpen {
+        align-self: flex-end;
+    }
+}
+@media screen and (min-width: 1100px) and (max-width: 1200px){
+    main {
+        padding-top: 3em;
+    }
+    .desktop {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .empty-whisky {
+        display: none;
+    }
+    .pages {
+        flex-grow: 2;
+        margin: 0em;
+    }
+    .inkpen {
+        display: none;
+    }
+
+}
+@media screen and (min-width: 1000px) and (max-width: 1100px){
+    main {
+        padding-top: 3em;
+    }
+    .desktop {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .whisky {
+        display: none;
+    }
+    .pages {
+        flex-grow: 2;
+        margin: 0em;
+    }
+    .inkpen {
+        display: none;
+    }
+
+}
+@media screen and (min-width: 800px) and (max-width: 1000px){
+    main {
+        padding-top: 3em;
+    }
+    .desktop {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .whisky {
+        display: none;
+    }
+    .empty-whisky {
+        display: none;
+    }
+    .pages {
+        flex-grow: 2;
+        margin: 0em;
+    }
+    .inkpen {
+        display: none;
+    }
+
+}
+@media screen and (max-width: 800px){
+    main {
+        padding-top: 3em;
+    }
+    .whisky,
+    .empty-whisky,
+    .inkpen {
+        display: none;
+    }
+    .pages {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        margin: 0em;
+        justify-content: center;
+    }
+    .leftpage,
+    .rightpage {
+        flex-grow: 2;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
  h3,
  .list {
      margin: 1%;
