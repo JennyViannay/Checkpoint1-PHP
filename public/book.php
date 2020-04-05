@@ -1,55 +1,42 @@
 <?php
 require 'connec.php';
+include 'controller.php';
+include 'create.php';
+include 'edit.php';
 $pdo = new PDO('mysql:host=localhost;dbname=checkpoint1', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 if($pdo === false){
     echo "Connection error :" . $pdo->error_log();
 } else {
     $query = $pdo->query('SELECT * FROM bribe');
     $bribe = $query->fetchAll(PDO::FETCH_ASSOC);
-}
 
-if(isset($_GET['name']) && !empty($_GET['name'])) {
-    $name = $_GET['name'];
-    $request = "SELECT * FROM bribe WHERE name=" . $name;
-    $sendRequest = $pdo->query($request);
-    if ($sendRequest === false) {
-        $pdo->errorInfo();
-    }
-    $bribe = $sendRequest->fetchObject();
-
-    if (isset($_GET['payment']) && !empty($_GET['payment'])) {
-        $payment = $_GET['payment'];
-        $request = "SELECT * FROM bribe WHERE payment=" . $payment;
+    if(isset($_GET['id']) && !empty($_GET['id'])) {
+        $id = $_GET['id'];
+        $request = "SELECT * FROM bribe WHERE id=" . $id;
         $sendRequest = $pdo->query($request);
         if ($sendRequest === false) {
             $pdo->errorInfo();
         }
         $bribe = $sendRequest->fetchObject();
     }
-    }
-
-if (isset($_POST)) {
-    if (!empty($_POST['name']) && !empty($_POST['payment'])) {
-        try {
-            $request = $pdo->prepare('INSERT INTO bribe (name, payment) VALUES (:name,:payment)');
-            $request->execute([
-                'name' => $_POST['name'],
-                'payment' => $_POST['payment']
-            ]);
-            header('Location: http://http://localhost:63342/new_Checkpoint/Checkpoint1-PHP/public/book.php');
-        } catch (PDOException $e) {
-            echo $error = $e->getMessage();
+    if(isset($_GET['name']) && !empty($_GET['name'])) {
+        $name = $_GET['name'];
+        $request = "SELECT * FROM bribe WHERE name=" . $name;
+        $sendRequest = $pdo->query($request);
+        if ($sendRequest === false) {
+            $pdo->errorInfo();
         }
-       // } else {
-        //echo 'I WANT THEIR NAME 🔫';
-    }
+        $bribe = $sendRequest->fetchObject();
 
-}
-$sum = 0;
-foreach($bribe as $value) {
-    for($value=1; $value<=5; $value++)
-    {
-    $sum +=$value;
+        if (isset($_GET['payment']) && !empty($_GET['payment'])) {
+            $payment = $_GET['payment'];
+            $request = "SELECT * FROM bribe WHERE payment=" . $payment;
+            $sendRequest = $pdo->query($request);
+            if ($sendRequest === false) {
+                $pdo->errorInfo();
+            }
+            $bribe = $sendRequest->fetchObject();
+        }
     }
 }
 ?>
@@ -67,6 +54,8 @@ foreach($bribe as $value) {
 <?php include 'header.php'; ?>
 
 <main class="container">
+    <div class="errorContainer"><span class="errorMsg"><?php echo $error ?></span><span class="errorMsg"><?php echo $error ?></span>
+    <span class="errorMsg"><?php echo $error ?></span></div>
 
     <section class="desktop">
         <img src="image/whisky.png" alt="a whisky glass" class="whisky"/>
@@ -75,10 +64,7 @@ foreach($bribe as $value) {
         <div class="pages">
             <div class="page leftpage">
                 <!-- TODO : Form -->
-                <?php if (isset($error)) {
-                        echo $error;
-                        } ?>
-                <h3>⚜️Thug life ⚜. Those bitches owe me 💸.️</h3>
+                <h5>⚜️Thug life ⚜Those bitches owe me 💸️💸️💸️</h5>
                 <?php foreach ($bribe as $bribeInfo) { ?>
                     <div>
                         <ul class="list">
@@ -87,11 +73,10 @@ foreach($bribe as $value) {
                         </ul>
                     </div>
                 <?php }?>
-
+                <span class="errorForm"><?php echo $error ?></span>
                 <form class="formThug" method="POST">
                     <label for="Name"></label>
                     <input class="inputThug" type="text" name="name" id="name" placeholder="Their MOTHAF*** name">
-                    <span><?php echo $error ;?></span>
                     <label for="Payment"></label>
                     <input class="inputThug" type="text" name="payment" id="payment" placeholder="What they OWE ME">
                     <button class="buttThug" type="submit">Submit</button>
@@ -100,7 +85,7 @@ foreach($bribe as $value) {
 
             <div class="page rightpage">
                 <!-- TODO : Display bribes and total paiement -->
-                <h3>⚜️Thug life ⚜. Those bitches owe me 💸.️</h3>
+                <h5>⚜️Thug life ⚜Those bitches owe me 💸️💸️💸️</h5>
 
                     <table style="width:100%">
                         <thead>
@@ -120,7 +105,7 @@ foreach($bribe as $value) {
                         <tfoot>
                             <tr>
                                 <td>Sum</td>
-                                <td><?php echo $sum; ?></td>
+                                <td><?php echo array_sum($payment);  ?></td>
                             </tr>
                         </tfoot>
                     </table>

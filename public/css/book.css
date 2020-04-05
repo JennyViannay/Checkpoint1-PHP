@@ -33,6 +33,9 @@ main {
 .leftpage {
     background: url('../image/paper.png'), linear-gradient(270deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius: 24px 40% 40% 24px/8px 8px 8px 8px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .rightpage {
@@ -40,8 +43,23 @@ main {
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
 }
+.errorContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+.errorMsg {
+    color: red;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.95em;
+    font-weight: 900;
+}
 
-
+.errorForm {
+    color: red;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.40em;
+}
 @media screen and (min-width: 1200px) {
     .desktop {
         display: flex;
@@ -147,7 +165,7 @@ main {
         margin-right: 1em;
     }
 }
- h3,
+ h5,
  .list {
      margin: 1%;
      padding: 0;
@@ -160,15 +178,19 @@ main {
 }
 
 .formThug {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
+
 }
 .inputThug,
 .buttThug {
-    width: 30%;
     margin: 1%;
     padding: 1%;
+}
+
+.inputThug {
+    width: 40%
+}
+.buttThug {
+    width: 30%;
 }
 
 .theyOweMe {
