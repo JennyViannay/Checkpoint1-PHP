@@ -3,6 +3,7 @@ require 'connec.php';
 include 'controller.php';
 include 'create.php';
 include 'edit.php';
+include 'sum.php';
 $pdo = new PDO('mysql:host=localhost;dbname=checkpoint1', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 if($pdo === false){
     echo "Connection error :" . $pdo->error_log();
@@ -105,7 +106,7 @@ if($pdo === false){
                         <tfoot>
                             <tr>
                                 <td>Sum</td>
-                                <td><?php echo array_sum($payment);  ?></td>
+                                <td><?php echo $sumPayments['total']; ?></td>
                             </tr>
                         </tfoot>
                     </table>
